@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>854</width>
+    <width>937</width>
     <height>873</height>
    </rect>
   </property>
@@ -17,8 +17,8 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>10</x>
+      <y>20</y>
       <width>791</width>
       <height>661</height>
      </rect>
@@ -30,6 +30,11 @@
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(225, 255, 236);
+selection-background-color: rgb(255, 170, 255);
+selection-color: rgb(85, 255, 255);
+alternate-background-color: rgb(85, 255, 255);
+background-color: rgb(85, 0, 255);
+background-color: rgb(170, 255, 255);
 selection-background-color: rgb(233, 254, 255);
 background-color: rgb(243, 255, 255);
 background-color: rgb(243, 255, 255);</string>
@@ -50,6 +55,16 @@ background-color: rgb(243, 255, 255);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit
+{
+border-radius:9px;
+border: 2px solid #000000;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.0, fy: -0.0,
+radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
+}</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -66,6 +81,16 @@ background-color: rgb(243, 255, 255);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit
+{
+border-radius:9px;
+border: 2px solid #000000;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.0, fy: -0.0,
+radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
+}</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="le_prenom">
       <property name="geometry">
@@ -76,6 +101,16 @@ background-color: rgb(243, 255, 255);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit
+{
+border-radius:9px;
+border: 2px solid #000000;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.0, fy: -0.0,
+radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
+}</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="le_age">
       <property name="geometry">
@@ -85,6 +120,16 @@ background-color: rgb(243, 255, 255);</string>
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit
+{
+border-radius:9px;
+border: 2px solid #000000;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.0, fy: -0.0,
+radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
+}</string>
       </property>
       <property name="maxLength">
        <number>3</number>
@@ -99,6 +144,16 @@ background-color: rgb(243, 255, 255);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit
+{
+border-radius:9px;
+border: 2px solid #000000;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.0, fy: -0.0,
+radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
+}</string>
+      </property>
       <property name="maxLength">
        <number>8</number>
       </property>
@@ -112,12 +167,22 @@ background-color: rgb(243, 255, 255);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit
+{
+border-radius:9px;
+border: 2px solid #000000;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.0, fy: -0.0,
+radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
+}</string>
+      </property>
      </widget>
      <widget class="QPushButton" name="_ajouter">
       <property name="geometry">
        <rect>
-        <x>470</x>
-        <y>490</y>
+        <x>390</x>
+        <y>480</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -204,6 +269,19 @@ background-color: rgb(243, 255, 255);</string>
        <string>Ville</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="modifier_pb">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>480</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Modifier</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -214,22 +292,9 @@ background-color: rgb(243, 255, 255);</string>
        <rect>
         <x>90</x>
         <y>170</y>
-        <width>601</width>
-        <height>171</height>
+        <width>661</width>
+        <height>241</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="modifier_pb">
-      <property name="geometry">
-       <rect>
-        <x>650</x>
-        <y>390</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Modifier</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_14">
@@ -240,6 +305,16 @@ background-color: rgb(243, 255, 255);</string>
         <width>201</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit
+{
+border-radius:9px;
+border: 2px solid #000000;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.0, fy: -0.0,
+radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
+}</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_ok_2">
@@ -278,6 +353,19 @@ background-color: rgb(243, 255, 255);</string>
       </property>
       <property name="text">
        <string>Recherche</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pb_ajouter">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>120</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>AFFICHER</string>
       </property>
      </widget>
     </widget>
@@ -319,6 +407,16 @@ background-color: rgb(243, 255, 255);</string>
         <width>181</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit
+{
+border-radius:9px;
+border: 2px solid #000000;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.0, fy: -0.0,
+radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
+}</string>
       </property>
      </widget>
     </widget>
@@ -940,7 +1038,7 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>854</width>
+     <width>937</width>
      <height>26</height>
     </rect>
    </property>

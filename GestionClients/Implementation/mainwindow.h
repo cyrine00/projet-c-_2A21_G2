@@ -21,6 +21,8 @@ private slots:
 
     void on_modifier_pb_clicked();
 
+    void on_pb_ajouter_clicked();
+
 private:
     Ui::MainWindow *ui;
     Client cl;

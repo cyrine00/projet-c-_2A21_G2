@@ -58,14 +58,7 @@ bool Client::ajouter()
          return query.exec();
 }
 
-bool Client::supprimer(int CIN)
-{
 
-    QSqlQuery query;
-       query.prepare("Delete from client where CIN=:CIN ");
-       query.bindValue(0, CIN);
-      return query.exec();
-}
 
 QSqlQueryModel * Client::afficher()
 {
@@ -82,17 +75,24 @@ model->setHeaderData(5, Qt::Horizontal, QObject::tr("mobile"));
 return model;
 }
 
-bool Client::modifier(int CIN, int age, int mobile, QString nom, QString prenom, QString ville)
+bool Client::modifier()
 {
     QSqlQuery query;
-       query.prepare("UPDATE CLIENT SET (CIN, nom, prenom,age,ville,mobile) "
-                     "VALUES (:CIN, :nom, :prenom, :age, :ville, :mobile)");
-       query.bindValue(0, CIN);
-       query.bindValue(1, nom);
-       query.bindValue(2, prenom);
-       query.bindValue(3, age);
-       query.bindValue(4, ville);
-       query.bindValue(5, mobile);
+       query.prepare("update CLIENT SET NOM=?,PRENOM=?,AGE=?,VILLE=?,MOBILE=? where CIN=?");
+       query.addBindValue(nom);
+       query.addBindValue(prenom);
+       query.addBindValue(age);
+       query.addBindValue(ville);
+       query.addBindValue(mobile);
+       query.addBindValue(CIN);
       return query.exec();
 
+}
+bool Client::supprimer(int CIN)
+{
+
+    QSqlQuery query;
+       query.prepare("Delete from client where CIN=:CIN ");
+       query.bindValue(0, CIN);
+      return query.exec();
 }

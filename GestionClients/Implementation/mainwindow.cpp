@@ -6,7 +6,7 @@
 #include<QtDebug>
 #include<QObject>
 #include<QSqlQueryModel>
-#include<assert.h>
+#include<QIntValidator>
 
 
 
@@ -15,6 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->le_CIN->setValidator(new QIntValidator(0,9999999,this));
+     ui->le_mobile->setValidator(new QIntValidator(0,99999999,this));
+      ui->le_age->setValidator(new QIntValidator(0,99,this));
     ui->tab_client->setModel(cl.afficher());
 }
 
@@ -66,18 +69,36 @@ void MainWindow::on_supprimer_pb_clicked()
                 msgBox.exec();
 }
 
-/*void MainWindow::on_modifier_pb_clicked()
+void MainWindow::on_modifier_pb_clicked()
 {
-    ui->tab_client->setModel(cl.afficher());
-    bool test=cl.modifier(ui->tab_client);
 
-    QMessageBox msgBox;
+   int CIN=ui->le_CIN->text().toInt();
+    int age=ui->le_age->text().toInt();
+    int mobile=ui->le_mobile->text().toInt();
+    QString nom=ui->le_nom->text();
+     QString prenom=ui->le_prenom->text();
+      QString ville=ui->le_ville->text();
+Client cl (CIN , age , mobile ,nom, prenom, ville);
+bool test=cl.modifier ();
+
     if (test)
-      { ui->tab_client->setModel(cl.afficher());
+      {
+         ui->tab_client->setModel(cl.afficher());
+        QMessageBox::information(nullptr, QObject::tr("ok"),
+                    QObject::tr("modification avec succes\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
 
-        msgBox.setText("modification avec succes");
-    }
-    else
-        msgBox.setText("Echec de modification");
-                msgBox.exec();
-}*/
+ ui->tab_client->setModel(cl.afficher());
+        }
+       else
+     ui->tab_client->setModel(cl.afficher());
+        QMessageBox::critical(nullptr, QObject::tr("erreur"),
+                    QObject::tr("Echec de modification\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+
+void MainWindow::on_pb_ajouter_clicked()
+{Client cl;
+    ui->tab_client->setModel(cl.afficher());
+}

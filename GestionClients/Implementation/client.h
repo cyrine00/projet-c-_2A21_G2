@@ -3,7 +3,7 @@
 #include<QString>
 #include <QSqlQuery>
 #include<QSqlQueryModel>
-#include<QTableWidget>
+
 class Client
 {
 public:
@@ -28,7 +28,7 @@ void setfidelite(QString);*/
 bool ajouter();
 QSqlQueryModel * afficher();
 bool supprimer(int);
-bool modifier(int,int,int,QString,QString,QString);
+bool modifier();
 
 private:
     int CIN,age,mobile,nb_visite,nb_points;
