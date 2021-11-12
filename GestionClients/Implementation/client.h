@@ -29,6 +29,10 @@ bool ajouter();
 QSqlQueryModel * afficher();
 bool supprimer(int);
 bool modifier();
+QSqlQueryModel * rechercher(QString c);
+QSqlQueryModel * trie_clnom();
+QSqlQueryModel * trie_clage();
+QSqlQueryModel * trie_clnbvis();
 
 private:
     int CIN,age,mobile,nb_visite,nb_points;

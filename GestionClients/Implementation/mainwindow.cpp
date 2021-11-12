@@ -36,27 +36,32 @@ void MainWindow::on__ajouter_clicked()
     QString nom=ui->le_nom->text();
      QString prenom=ui->le_prenom->text();
       QString ville=ui->le_ville->text();
+      cl.setCIN(ui->le_CIN->text().toInt());
 Client cl (CIN , age , mobile ,nom, prenom, ville);
 bool test=cl.ajouter();
 if (test)
-/*{
+{
+  /*  if (CIN==cl.getCIN())
+     QMessageBox::warning(this,"Attention","CIN deja existe");
 
     QMessageBox::critical(nullptr, QObject::tr("not ok "),
                 QObject::tr("Echec d'ajout\n"
-                            "Click Cancel to exit."), QMessageBox::Cancel);
+                           "Click Cancel to exit."), QMessageBox::Cancel);
 }
 else*/
     ui->tab_client->setModel(cl.afficher()); //refresh
     QMessageBox::information(nullptr, QObject::tr("ok"),
             QObject::tr("Ajout avec succes\n"
                         "Click Cancel to exit."), QMessageBox::Cancel);
+
  ui->tab_client->setModel(cl.afficher());
+}
 }
 
 void MainWindow::on_supprimer_pb_clicked()
 {
 
-    cl.setCIN(ui->CIN_suppr->text().toInt());
+    cl.setCIN(ui->le_CIN->text().toInt());
     bool test=cl.supprimer(cl.getCIN());
     QMessageBox msgBox;
     if (test)
@@ -98,7 +103,36 @@ bool test=cl.modifier ();
 
 }
 
-void MainWindow::on_pb_ajouter_clicked()
-{Client cl;
-    ui->tab_client->setModel(cl.afficher());
+void MainWindow::on_pb_afficher_clicked()
+{
+    Client cl;
+        ui->tab_client->setModel(cl.afficher());
 }
+
+void MainWindow::on_ageb_clicked()
+{
+  ui->tab_client->setModel((cl.trie_clage()));
+}
+
+void MainWindow::on_nomb_clicked()
+{
+  ui->tab_client->setModel(cl.trie_clnom());
+}
+
+void MainWindow::on_fidb_clicked()
+{
+    ui->tab_client->setModel(cl.trie_clnbvis());
+}
+
+
+
+void MainWindow::on_lineEdit_23_textChanged(const QString &arg1)
+{
+    QString ch = arg1;
+
+                    if (ch=="")
+                        ui->tab_client->setModel(cl.afficher());
+                    else
+                      ui->tab_client->setModel(cl.rechercher(ch));
+}
+

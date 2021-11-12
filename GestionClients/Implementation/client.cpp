@@ -5,6 +5,7 @@
 #include<QSqlQueryModel>
 #include<QString>
 
+
 Client::Client()
 {
 CIN=0; age=0;
@@ -40,6 +41,7 @@ void Client::setmobile(int mobile){this->mobile=mobile;}
 void Client::setnom(QString nom){  this->nom=nom;}
 void Client::setprenom(QString prenom){this->prenom=prenom;}
 void Client::setville(QString ville){ this->ville=ville;}
+
 
 bool Client::ajouter()
 {
@@ -95,4 +97,63 @@ bool Client::supprimer(int CIN)
        query.prepare("Delete from client where CIN=:CIN ");
        query.bindValue(0, CIN);
       return query.exec();
+}
+
+QSqlQueryModel * Client::rechercher(QString c)
+{
+    QString CIN_string=QString::number(CIN);
+    QString age_string=QString::number(age);
+    QString mobile_string=QString::number(mobile);
+     QSqlQueryModel *model=new QSqlQueryModel();
+      model->setQuery("SELECT * FROM client  WHERE CIN LIKE '%"+c+"%'");
+      model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+      model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+      model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+      model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
+      model->setHeaderData(4, Qt::Horizontal, QObject::tr("ville"));
+      model->setHeaderData(5, Qt::Horizontal, QObject::tr("mobile"));
+
+      return model;
+}
+
+QSqlQueryModel *Client::trie_clnom()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+     model->setQuery("SELECT * FROM Client ORDER BY NOM ");
+     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+     model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+     model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+     model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
+     model->setHeaderData(4, Qt::Horizontal, QObject::tr("ville"));
+     model->setHeaderData(5, Qt::Horizontal, QObject::tr("mobile"));
+
+     return model;
+}
+
+QSqlQueryModel *Client::trie_clage()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+     model->setQuery("SELECT * FROM Client ORDER BY AGE ");
+     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+     model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+     model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+     model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
+     model->setHeaderData(4, Qt::Horizontal, QObject::tr("ville"));
+     model->setHeaderData(5, Qt::Horizontal, QObject::tr("mobile"));
+
+     return model;
+}
+
+QSqlQueryModel *Client::trie_clnbvis()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+     model->setQuery("SELECT * FROM Client ORDER BY FIDELITE ");
+     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+     model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+     model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+     model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
+     model->setHeaderData(4, Qt::Horizontal, QObject::tr("ville"));
+     model->setHeaderData(5, Qt::Horizontal, QObject::tr("mobile"));
+
+     return model;
 }
