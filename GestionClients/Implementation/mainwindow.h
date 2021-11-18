@@ -23,7 +23,6 @@ private slots:
 
     void on_pb_afficher_clicked();
 
-    void on_pb_recherche_clicked();
 
     void on_ageb_clicked();
 
@@ -31,11 +30,21 @@ private slots:
 
     void on_fidb_clicked();
 
- //   void on_pb_recherche_windowIconTextChanged(const QString &iconText);
-
     void on_lineEdit_23_textChanged(const QString &arg1);
 
-   // void on_groupBox_2_windowIconTextChanged(const QString &iconText);
+    void on_tab_client_activated(const QModelIndex &index);
+
+    void on_valider_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_tabWidget_2_currentChanged(int index);
+
+
+
+    void on_remise_clicked();
 
 private:
     Ui::MainWindow *ui;
