@@ -4,12 +4,14 @@
 #
 #-------------------------------------------------
 
+
 QT       += core gui sql
 QT += sql
 QT += widgets
 QT += printsupport
 QT += core
 QT += charts
+
 
 
 
@@ -32,22 +34,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    avis.cpp \
    client.cpp \
-    imprimer.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
     qcustomplot.cpp
 
 HEADERS += \
+    avis.h \
     client.h \
-    imprimer.h \
         mainwindow.h \
     connection.h \
     qcustomplot.h
 
 FORMS += \
-        imprimer.ui \
         mainwindow.ui
 
 # Default rules for deployment.

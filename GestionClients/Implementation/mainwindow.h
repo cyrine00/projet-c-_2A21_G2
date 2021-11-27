@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include<client.h>
+#include<avis.h>
+
 namespace Ui {
 class MainWindow;
 }
@@ -23,12 +25,9 @@ private slots:
 
     void on_pb_afficher_clicked();
 
-
     void on_ageb_clicked();
 
     void on_nomb_clicked();
-
-    void on_fidb_clicked();
 
     void on_lineEdit_23_textChanged(const QString &arg1);
 
@@ -36,19 +35,23 @@ private slots:
 
     void on_valider_clicked();
 
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_clicked();
-
     void on_tabWidget_2_currentChanged(int index);
 
+    void on_nbvisite_clicked();
 
+    void on_imprimer_clicked();
 
-    void on_remise_clicked();
+    void on_reset_clicked();
+
+    void on_client_mois_clicked();
+
+    void on_gifts_clicked();
+
 
 private:
     Ui::MainWindow *ui;
     Client cl;
+    Avis a;
 };
 
 #endif // MAINWINDOW_H

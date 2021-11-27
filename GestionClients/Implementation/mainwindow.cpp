@@ -11,7 +11,6 @@
 #include<QImage>
 #include <QtGui>
 #include<QPixmap>
-#include<imprimer.h>
 #include<QPrintDialog>
 #include<QPrinter>
 #include<QPainter>
@@ -19,10 +18,10 @@
 #include<QFile>
 #include<QIODevice>
 #include<QTextStream>
-#include<stat.h>
 #include<qcustomplot.h>
-
-
+#include<avis.h>
+#include <QDesktopServices>
+#include <QUrl>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -52,20 +51,12 @@ void MainWindow::on__ajouter_clicked()
     QString nom=ui->le_nom->text();
      QString prenom=ui->le_prenom->text();
       QString ville=ui->le_ville->text();
-        QString fidelite=ui->fidelite->text();
       cl.setCIN(ui->le_CIN->text().toInt());
-Client cl (CIN , age , mobile,nb_visite ,nom, prenom, ville,fidelite);
+Client cl (CIN , age , mobile,nb_visite ,nom, prenom, ville);
 bool test=cl.ajouter();
 if (test)
 {
-  /*  if (CIN==cl.getCIN())
-     QMessageBox::warning(this,"Attention","CIN deja existe");
 
-    QMessageBox::critical(nullptr, QObject::tr("not ok "),
-                QObject::tr("Echec d'ajout\n"
-                           "Click Cancel to exit."), QMessageBox::Cancel);
-}
-else*/
     ui->tab_client->setModel(cl.afficher()); //refresh
     QMessageBox::information(nullptr, QObject::tr("ok"),
             QObject::tr("Ajout avec succes\n"
@@ -100,8 +91,7 @@ void MainWindow::on_modifier_pb_clicked()
     QString nom=ui->le_nom->text();
      QString prenom=ui->le_prenom->text();
       QString ville=ui->le_ville->text();
-      QString fidelite=ui->fidelite->text();
-Client cl (CIN , age , mobile,nb_visite ,nom, prenom, ville,fidelite);
+Client cl (CIN , age , mobile,nb_visite ,nom, prenom, ville);
 bool test=cl.modifier ();
 
     if (test)
@@ -113,12 +103,7 @@ bool test=cl.modifier ();
 
  ui->tab_client->setModel(cl.afficher());
         }
-    /*   else
-     ui->tab_client->setModel(cl.afficher());
-        QMessageBox::critical(nullptr, QObject::tr("erreur"),
-                    QObject::tr("Echec de modification\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
-*/
+
 }
 
 void MainWindow::on_pb_afficher_clicked()
@@ -130,29 +115,20 @@ void MainWindow::on_pb_afficher_clicked()
 void MainWindow::on_ageb_clicked()
 {
   ui->tab_client->setModel((cl.trie_clage()));
-  QMessageBox::information(nullptr, QObject::tr("tri"),
-              QObject::tr("Tri par AGE effectué avec succés\n"
-                          "Click Cancel to exit."), QMessageBox::Cancel);
+
 }
 
 void MainWindow::on_nomb_clicked()
 {
   ui->tab_client->setModel(cl.trie_clnom());
-  QMessageBox::information(nullptr, QObject::tr("tri"),
-              QObject::tr("Tri par NOM effectué avec succés\n"
-                          "Click Cancel to exit."), QMessageBox::Cancel);
+
 }
 
-void MainWindow::on_fidb_clicked()
+void MainWindow::on_nbvisite_clicked()
 {
     ui->tab_client->setModel(cl.trie_clnbvis());
-    QMessageBox::information(nullptr, QObject::tr("tri"),
-                QObject::tr("Tri par NB VISITE effectué avec succés\n"
-                            "Click Cancel to exit."), QMessageBox::Cancel);
 
 }
-
-
 
 void MainWindow::on_lineEdit_23_textChanged(const QString &arg1) ///recherche
 {
@@ -181,7 +157,6 @@ if(qry.exec())
         ui->le_ville->setText((qry.value(4).toString()));
         ui->le_mobile->setText((qry.value(5).toString()));
         ui->nb_visite->setText((qry.value(6).toString()));
-        ui->fidelite->setText((qry.value(7).toString()));
     }
 }
 else
@@ -192,63 +167,29 @@ else
 }
 }
 
-void MainWindow::on_valider_clicked() ///valider avis
+
+void MainWindow::on_reset_clicked()
 {
-    QString fname = "C:\\Users\\ASUS\\Desktop\\smart park\\Avis.txt";
-    QFile file(fname);
-    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-            QTextStream stream(&file);
-            QString Acceuil_telephonique = ui->comboBox->currentText();
-            QString Amabilite = ui->comboBox_2->currentText();
-            QString Disponibilite = ui->comboBox_3->currentText();
-            QString Espace_vert = ui->comboBox_4->currentText();
-            QString Espace_des_jeux = ui->comboBox_5->currentText();
-            QString Parking = ui->comboBox_6->currentText();
-            QString box = ui->comboBox_7->currentText();
-            QString com = ui->comboBox_8->currentText();
-            QString positif = ui->positif->toPlainText();
-            QString negatif = ui->negatif->toPlainText();
-
-         stream << "Acceuil telephonique :" << Acceuil_telephonique << endl;
-         stream << "Amabilite :" << Amabilite << endl;
-         stream << "Disponibilite :" << Disponibilite << endl;
-         stream << "Espace vert :" << Espace_vert << endl;
-         stream << "Espace des jeux :" << Espace_des_jeux << endl;
-         stream << "Parking :" << Parking << endl;
-         stream << "Souhaitez-vous nous recommander aupres d autres ? :" << box << endl;
-         stream << "Pensez-vous a nous revisiter ? :" << com << endl;
-         stream << "Sur l ensemble de votre manifestation quel a ete le point le plus positif ? :" << positif << endl;
-         stream << "Sur l ensemble de votre manifestation quel a ete le point le plus négatif ? :" << negatif << endl;
-
+    ui->le_CIN->clear();
+    ui->le_age->clear();
+    ui->le_mobile->clear();
+    ui->nb_visite->clear();
+    ui->le_nom->clear();
+    ui->le_prenom->clear();
+    ui->le_ville->clear();
 }
-file.close();
 
-    QMessageBox::information(nullptr, QObject::tr("Avis"),
-                QObject::tr("Avis enregistré\n"
+void MainWindow::on_imprimer_clicked()
+{
+    QPrinter  printer;
+    printer.setPrinterName("desired printer name");
+    QPrintDialog dialog(&printer,this);
+    if(dialog.exec() == QDialog::Rejected) return;
+    ui->textEdit_2->print(&printer);
+    QMessageBox::information(nullptr, QObject::tr("Carte"),
+                QObject::tr("Carte imprimé ! \n"
                             "Click Cancel to exit."), QMessageBox::Cancel);
-
-
 }
-
-
-
-void MainWindow::on_pushButton_3_clicked() //qr code
-{
-    QImage imageObject;
-        imageObject.load("c:/QR.png");
-        ui->mylabel->setPixmap(QPixmap::fromImage(imageObject));
-        QPainter Painter(this);
-}
-
-
-void MainWindow::on_pushButton_clicked()
-{
-    imprimer i;
-    i.setclient(cl);
-    i.exec();
-}
-
 
 void MainWindow::on_tabWidget_2_currentChanged(int index)
 {
@@ -342,30 +283,61 @@ void MainWindow::on_tabWidget_2_currentChanged(int index)
                  ui->plot->legend->setFont(legendFont);
                  ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 }
-
-void MainWindow::on_remise_clicked()
+void MainWindow::on_valider_clicked() ///valider avis
 {
-    ui->mylabel->clear();
-    ui->tab_client->setModel((cl.afficher()));
-    int CIN=ui->le_CIN->text().toInt();
-    int age=ui->le_age->text().toInt();
-    int mobile=ui->le_mobile->text().toInt();
-    int nb_visite=ui->nb_visite->text().toInt();
-    QString nom=ui->le_nom->text();
-     QString prenom=ui->le_prenom->text();
-      QString ville=ui->le_ville->text();
-        QString fidelite=ui->fidelite->text();
+    /*QString fname = "C:\\Users\\ASUS\\Desktop\\smart park\\Avis.txt";
+    QFile file(fname);
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+            QTextStream stream(&file);*/
+            QString Acceuil_telephonique = ui->comboBox->currentText();
+            QString Amabilite = ui->comboBox_2->currentText();
+            QString Disponibilite = ui->comboBox_3->currentText();
+            QString Espace_vert = ui->comboBox_4->currentText();
+            QString Espace_jeux = ui->comboBox_5->currentText();
+            QString Parking = ui->comboBox_6->currentText();
+            QString recommandation = ui->comboBox_7->currentText();
+            QString revisiter = ui->comboBox_8->currentText();
+            QString positif = ui->positif->toPlainText();
+            QString negatif = ui->negatif->toPlainText();
 
-Client cl (CIN , age , mobile,nb_visite ,nom, prenom, ville,fidelite);
-bool test=cl.remise_fidelite();
-if (test)
-   {    ui->tab_client->setModel((cl.afficher()));
+       /*  stream << "Acceuil telephonique :" << Acceuil_telephonique << endl;
+         stream << "Amabilite :" << Amabilite << endl;
+         stream << "Disponibilite :" << Disponibilite << endl;
+         stream << "Espace vert :" << Espace_vert << endl;
+         stream << "Espace des jeux :" << Espace_des_jeux << endl;
+         stream << "Parking :" << Parking << endl;
+         stream << "Souhaitez-vous nous recommander aupres d autres ? :" << box << endl;
+         stream << "Pensez-vous a nous revisiter ? :" << com << endl;
+         stream << "Sur l ensemble de votre manifestation quel a ete le point le plus positif ? :" << positif << endl;
+         stream << "Sur l ensemble de votre manifestation quel a ete le point le plus négatif ? :" << negatif << endl;
 
-    QMessageBox::information(nullptr, QObject::tr("Fidelité"),
-            QObject::tr("Client est FIDELE \n"
-                        "Click Cancel to exit."), QMessageBox::Cancel);
-    QMessageBox::information(nullptr, QObject::tr("REMISE"),
-            QObject::tr("Client jouit d'un remise de 20% \n"
-                        "Click Cancel to exit."), QMessageBox::Cancel);
-ui->tab_client->setModel((cl.afficher()));}
+}
+file.close();*/
+Avis a (Acceuil_telephonique,Amabilite,Disponibilite,Espace_vert,Espace_jeux,Parking,recommandation,revisiter,positif,negatif);
+
+            bool test=a.ajouter();
+            if (test)
+            {
+
+                QMessageBox::critical(nullptr, QObject::tr("Avis"),
+                            QObject::tr("Avis non enregistré\n"
+                                        "Click Cancel to exit."), QMessageBox::Cancel);
+}
+            else
+                QMessageBox::information(nullptr, QObject::tr("Avis"),
+                                QObject::tr("Avis enregistré\n"
+                                            "Click Cancel to exit."), QMessageBox::Cancel);
+}
+
+void MainWindow::on_client_mois_clicked()
+{
+ ui->tab_client->setModel(cl.client_mois());
+}
+
+
+void MainWindow::on_gifts_clicked()
+{
+   QString link= "https://wheel-decide.com/prizewheel.html";
+   QDesktopServices::openUrl(link);
 }
