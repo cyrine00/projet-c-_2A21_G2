@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include<client.h>
 #include<avis.h>
+#include<Arduino.h>
 
 namespace Ui {
 class MainWindow;
@@ -52,6 +53,8 @@ private:
     Ui::MainWindow *ui;
     Client cl;
     Avis a;
+    QByteArray data;
+    Arduino A;
 };
 
 #endif // MAINWINDOW_H

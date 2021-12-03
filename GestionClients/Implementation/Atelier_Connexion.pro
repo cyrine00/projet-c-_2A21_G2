@@ -11,7 +11,7 @@ QT += widgets
 QT += printsupport
 QT += core
 QT += charts
-
+QT += serialport
 
 
 
@@ -34,6 +34,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    arduino.cpp \
     avis.cpp \
    client.cpp \
         main.cpp \
@@ -42,6 +43,8 @@ SOURCES += \
     qcustomplot.cpp
 
 HEADERS += \
+    Arduino.h \
+    arduino.h \
     avis.h \
     client.h \
         mainwindow.h \

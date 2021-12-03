@@ -33,6 +33,16 @@ MainWindow::MainWindow(QWidget *parent) :
      ui->le_mobile->setValidator(new QIntValidator(0,99999999,this));
       ui->le_age->setValidator(new QIntValidator(0,99,this));
     ui->tab_client->setModel(cl.afficher());
+
+    int ret=A.connect_arduino();
+    switch(ret)
+    {
+    case(0):qDebug()<<"arduino is available and connected to : " << A.getarduino_port_name();
+        break;
+    case(1):qDebug()<<"arduino is available but not connected to : " << A.getarduino_port_name();
+        break;
+    case(-1):qDebug()<<"arduino is not available : " << A.getarduino_port_name();
+    }
 }
 
 MainWindow::~MainWindow()
