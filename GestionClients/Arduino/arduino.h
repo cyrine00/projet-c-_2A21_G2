@@ -2,7 +2,8 @@
 #define ARDUINO_H
 #include<QtSerialPort/QSerialPort> //classe rassemblant des fonctions permettent l'echange des données
 #include<QtSerialPort/QSerialPortInfo> //classe fournissant des informations sur les ports disponibles
-
+#include<QString>
+#include<QDebug>
 
 class Arduino
 {
@@ -17,10 +18,11 @@ public:
 private:
 QSerialPort * serial;
 static const quint16 arduino_uno_vendor_id=9025;
-static const quint16 arduino_uno_producy_id=67;
+static const quint16 arduino_uno_product_id =67;
+
 QString arduino_port_name;
 bool arduino_is_available;
-QByteArray data;
+QByteArray data1;
 };
 
 #endif // ARDUINO_H
