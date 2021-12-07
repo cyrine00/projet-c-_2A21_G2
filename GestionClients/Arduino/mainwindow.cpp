@@ -31,11 +31,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::update_label()
 {
-    data1=A.read_from_arduino();
- if (data1 == "0")
+    data=A.read_from_arduino();
+ if (data == "20")
 ui->label->setText("Pluie Detectée ");
 
-else if (data1 == "1")
+else if (data == "21")
 ui->label->setText("Pas de Pluie");
 }
 

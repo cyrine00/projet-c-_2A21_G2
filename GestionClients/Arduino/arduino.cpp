@@ -3,7 +3,7 @@
 
 Arduino::Arduino()
 {
-data1="";
+data="";
 arduino_port_name="";
 arduino_is_available=false;
 serial=new QSerialPort;
@@ -48,8 +48,8 @@ QByteArray Arduino::read_from_arduino()
 {
     if(serial->isReadable())
     {
-        data1=serial->readAll();
-        return data1;
+        data=serial->readAll();
+        return data;
     }
 }
 int Arduino::close_arduino()

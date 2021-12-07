@@ -22,7 +22,7 @@ void update_label();
 
 private:
     Ui::MainWindow *ui;
-    QByteArray data1;
+    QByteArray data;
     Arduino A;
 };
 #endif // MAINWINDOW_H

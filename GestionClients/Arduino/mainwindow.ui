@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>566</width>
+    <height>297</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,11 +17,15 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>130</y>
-      <width>321</width>
-      <height>81</height>
+      <x>170</x>
+      <y>100</y>
+      <width>351</width>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 italic 18pt &quot;Segoe UI Black&quot;;
+color: rgb(170, 85, 255);</string>
     </property>
     <property name="text">
      <string/>
@@ -30,23 +34,43 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>160</y>
-      <width>56</width>
-      <height>16</height>
+      <x>70</x>
+      <y>120</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(170, 85, 127);
+font: 14pt &quot;Segoe UI&quot;;</string>
+    </property>
     <property name="text">
-     <string>Signal :</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Signal :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>521</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(201, 255, 249);</string>
+    </property>
+   </widget>
+   <zorder>widget</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>566</width>
      <height>26</height>
     </rect>
    </property>
