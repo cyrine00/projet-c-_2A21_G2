@@ -1,6 +1,6 @@
 #ifndef ARDUINO_H
 #define ARDUINO_H
-
+//aa
 
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
