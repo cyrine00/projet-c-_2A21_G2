@@ -16,6 +16,12 @@ parking::parking(int code,QString nbh,QString prix,int cin_emp,int cin_cl)
   this->cin_emp=cin_emp;
   this->cin_cl = cin_cl;
 }
+parkingh::parkingh(QString nom,QString datee,QString fn )
+{
+  this->nom=nom;
+  this->datee=datee;
+  this->fn=fn;
+}
 int parking::get_code(){return  code;}
 QString parking::get_nbh(){return  nbh;}
 QString parking::get_prix(){return prix;}
@@ -87,3 +93,55 @@ QSqlQueryModel * parking::tri()
         return model;
 }
 
+QSqlQueryModel * parking::rechercher(int code)
+{
+
+    QSqlQueryModel *model=new QSqlQueryModel();
+    QSqlQuery query;
+    QString res= QString::number(code);
+    query.prepare("Select * from PARKING where code =:code");
+    query.bindValue(":code", res);
+    query.exec();
+    model->setQuery(query);
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("code"));
+
+        return model;
+   }
+QSqlQueryModel * parking::afficher_tri()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+model->setQuery("select * from PARKING order by code desc ");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("code"));
+
+    return model;
+}
+QSqlQueryModel * parkingh::afficherhis()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select * from historique");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("date "));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("fonction "));
+        return model;
+
+}
+bool parkingh::ajoutehis()
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO historique (NOM, DATEE, FN) "
+                  "VALUES (:nom, :datee, :fn)");
+    query.bindValue(":nom", nom);
+    query.bindValue(":datee", datee);
+    query.bindValue(":fn", fn);
+    return    query.exec();
+}
+bool parkingh::modifierhis()
+{
+    QSqlQuery query;
+    query.prepare("UPDATE historique SET datee='"+datee+"',fn='"+fn+"' where nom='"+nom+"'  ;");
+    query.bindValue(":nom",nom);
+    query.bindValue(":datee", datee);
+    query.bindValue(":fn", fn);
+    return    query.exec();
+}

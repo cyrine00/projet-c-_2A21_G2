@@ -4,8 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
-
+QT       += core gui serialport sql
+QT       += printsupport multimedia texttospeech
+QT       += multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Atelier_Connexion
@@ -25,12 +26,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    arduino.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
     parking.cpp
 
 HEADERS += \
+    arduino.h \
         mainwindow.h \
     connection.h \
     parking.h

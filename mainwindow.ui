@@ -55,9 +55,9 @@
        <widget class="QPushButton" name="pbconfirme">
         <property name="geometry">
          <rect>
-          <x>50</x>
-          <y>330</y>
-          <width>161</width>
+          <x>60</x>
+          <y>320</y>
+          <width>121</width>
           <height>31</height>
          </rect>
         </property>
@@ -93,9 +93,9 @@ radius: 3, stop: 0 #c4c9c7, stop: 1 #c4c9c7);
        <widget class="QLabel" name="label_2">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>20</x>
           <y>150</y>
-          <width>101</width>
+          <width>91</width>
           <height>16</height>
          </rect>
         </property>
@@ -115,8 +115,8 @@ color: Black
        <widget class="QLineEdit" name="codelin">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>110</y>
+          <x>110</x>
+          <y>100</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -135,8 +135,8 @@ radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
        <widget class="QLabel" name="Email">
         <property name="geometry">
          <rect>
-          <x>50</x>
-          <y>110</y>
+          <x>20</x>
+          <y>100</y>
           <width>81</width>
           <height>16</height>
          </rect>
@@ -157,7 +157,7 @@ color: Black
        <widget class="QLineEdit" name="cin_emp">
         <property name="geometry">
          <rect>
-          <x>130</x>
+          <x>110</x>
           <y>150</y>
           <width>113</width>
           <height>20</height>
@@ -235,7 +235,7 @@ color: Black
        <widget class="QLabel" name="Email_2">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>30</x>
           <y>190</y>
           <width>81</width>
           <height>16</height>
@@ -257,7 +257,7 @@ color: Black
        <widget class="QLabel" name="label_3">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>30</x>
           <y>230</y>
           <width>56</width>
           <height>16</height>
@@ -270,7 +270,7 @@ color: Black
        <widget class="QLineEdit" name="nbh">
         <property name="geometry">
          <rect>
-          <x>130</x>
+          <x>110</x>
           <y>190</y>
           <width>113</width>
           <height>20</height>
@@ -290,8 +290,8 @@ radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
        <widget class="QLineEdit" name="prix">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>220</y>
+          <x>110</x>
+          <y>230</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -310,7 +310,7 @@ radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>20</x>
           <y>270</y>
           <width>91</width>
           <height>16</height>
@@ -323,7 +323,7 @@ radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
        <widget class="QLineEdit" name="cin_cl">
         <property name="geometry">
          <rect>
-          <x>130</x>
+          <x>110</x>
           <y>270</y>
           <width>113</width>
           <height>22</height>
@@ -343,9 +343,9 @@ radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
        <widget class="QTableView" name="tableView">
         <property name="geometry">
          <rect>
-          <x>260</x>
+          <x>230</x>
           <y>50</y>
-          <width>471</width>
+          <width>511</width>
           <height>261</height>
          </rect>
         </property>
@@ -353,7 +353,7 @@ radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
        <widget class="QPushButton" name="pushButton">
         <property name="geometry">
          <rect>
-          <x>380</x>
+          <x>430</x>
           <y>330</y>
           <width>96</width>
           <height>28</height>
@@ -426,6 +426,198 @@ radius: 3, stop: 0 #c4c9c7, stop: 1 #c4c9c7);
          <string>Suprimer</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>10</y>
+          <width>96</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+color: #ffffff;
+border: 3px solid #010203;
+font: 8pt &quot;MS Reference Sans Serif&quot;;
+border-radius: 15px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 3, stop: 0 #010203, stop: 1 #c4c9c7);
+min-width: 80px;
+}
+
+QPushButton:hover {
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 3, stop: 0 #010203, stop: 1 #010203);
+}
+
+ QPushButton:pressed {
+background: qradialgradient(cx: 0.4, cy: -0.1,
+fx: 0.4, fy: -0.1,
+radius: 3, stop: 0 #c4c9c7, stop: 1 #c4c9c7);
+}</string>
+        </property>
+        <property name="text">
+         <string>PDF</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="rechercheLine">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>10</y>
+          <width>121</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit
+{
+border-radius:9px;
+border: 2px solid #000000;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.0, fy: -0.0,
+radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
+}</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="recherche">
+        <property name="geometry">
+         <rect>
+          <x>600</x>
+          <y>10</y>
+          <width>96</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+color: #ffffff;
+border: 3px solid #010203;
+font: 8pt &quot;MS Reference Sans Serif&quot;;
+border-radius: 15px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 3, stop: 0 #010203, stop: 1 #c4c9c7);
+min-width: 80px;
+}
+
+QPushButton:hover {
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 3, stop: 0 #010203, stop: 1 #010203);
+}
+
+ QPushButton:pressed {
+background: qradialgradient(cx: 0.4, cy: -0.1,
+fx: 0.4, fy: -0.1,
+radius: 3, stop: 0 #c4c9c7, stop: 1 #c4c9c7);
+}</string>
+        </property>
+        <property name="text">
+         <string>Recherche</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>330</y>
+          <width>96</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+color: #ffffff;
+border: 3px solid #010203;
+font: 8pt &quot;MS Reference Sans Serif&quot;;
+border-radius: 15px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 3, stop: 0 #010203, stop: 1 #c4c9c7);
+min-width: 80px;
+}
+
+QPushButton:hover {
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 3, stop: 0 #010203, stop: 1 #010203);
+}
+
+ QPushButton:pressed {
+background: qradialgradient(cx: 0.4, cy: -0.1,
+fx: 0.4, fy: -0.1,
+radius: 3, stop: 0 #c4c9c7, stop: 1 #c4c9c7);
+}</string>
+        </property>
+        <property name="text">
+         <string>Tri desc</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pb_ask">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>380</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+color: #ffffff;
+border: 3px solid #010203;
+font: 8pt &quot;MS Reference Sans Serif&quot;;
+border-radius: 15px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 3, stop: 0 #010203, stop: 1 #c4c9c7);
+min-width: 80px;
+}
+
+QPushButton:hover {
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 3, stop: 0 #010203, stop: 1 #010203);
+}
+
+ QPushButton:pressed {
+background: qradialgradient(cx: 0.4, cy: -0.1,
+fx: 0.4, fy: -0.1,
+radius: 3, stop: 0 #c4c9c7, stop: 1 #c4c9c7);
+}</string>
+        </property>
+        <property name="text">
+         <string>ask</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="le_pb_ask">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>380</y>
+          <width>113</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit
+{
+border-radius:9px;
+border: 2px solid #000000;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.0, fy: -0.0,
+radius: 1.89, stop: 0 #ffffff, stop: 1 #999);
+}</string>
+        </property>
+       </widget>
        <zorder>label_20</zorder>
        <zorder>pbconfirme</zorder>
        <zorder>label_2</zorder>
@@ -442,7 +634,66 @@ radius: 3, stop: 0 #c4c9c7, stop: 1 #c4c9c7);
        <zorder>tableView</zorder>
        <zorder>pushButton</zorder>
        <zorder>pushButton_2</zorder>
+       <zorder>pushButton_3</zorder>
+       <zorder>rechercheLine</zorder>
+       <zorder>recherche</zorder>
+       <zorder>pushButton_4</zorder>
+       <zorder>pb_ask</zorder>
+       <zorder>le_pb_ask</zorder>
       </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>historique</string>
+     </attribute>
+     <widget class="QTableView" name="tabpartenaire_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>591</width>
+        <height>371</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pbconfirme_2">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>110</y>
+        <width>161</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+color: #ffffff;
+border: 3px solid #010203;
+font: 8pt &quot;MS Reference Sans Serif&quot;;
+border-radius: 15px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 3, stop: 0 #010203, stop: 1 #c4c9c7);
+min-width: 80px;
+}
+
+QPushButton:hover {
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 3, stop: 0 #010203, stop: 1 #010203);
+}
+
+ QPushButton:pressed {
+background: qradialgradient(cx: 0.4, cy: -0.1,
+fx: 0.4, fy: -0.1,
+radius: 3, stop: 0 #c4c9c7, stop: 1 #c4c9c7);
+}</string>
+      </property>
+      <property name="text">
+       <string>Ajouter</string>
+      </property>
      </widget>
     </widget>
    </widget>
