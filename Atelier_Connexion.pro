@@ -1,10 +1,21 @@
 #-------------------------------------------------
 #
 # Project created by QtCreator 2018-10-26T21:45:23
-#
+#QT       += core gui sql
 #-------------------------------------------------
 
-QT       += core gui sql
+QT      += core gui sql
+QT += widgets
+QT += printsupport
+QT += sql network printsupport
+QT += gui
+QT      += core gui multimedia
+QT += serialport
+QT      += core gui multimedia multimediawidgets charts
+QT       += core gui charts
+
+QT += serialport
+QT+= svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,20 +36,54 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    arduino.cpp \
+    arduino1.cpp \
+    avis.cpp \
+    client.cpp \
+    commande.cpp \
     employe.cpp \
+    excel.cpp \
+    historique.cpp \
         main.cpp \
         mainwindow.cpp \
-    connection.cpp
+    connection.cpp \
+    parking.cpp \
+    qcustomplot.cpp \
+    qrcode.cpp \
+    qrcodegeneratordemo.cpp \
+    qrcodegeneratorworker.cpp \
+    qrwidget.cpp \
+    reservation.cpp \
+    smtp.cpp
 
 HEADERS += \
+    arduino.h \
+    arduino1.h \
+    avis.h \
+    client.h \
+    commande.h \
     employe.h \
+    excel.h \
+    historique.h \
         mainwindow.h \
-    connection.h
+    connection.h \
+    parking.h \
+    qcustomplot.h \
+    qrcode.h \
+    qrwidget.h \
+    reservation.h \
+    smtp.h
 
 FORMS += \
         mainwindow.ui
 
+QMAKE_CXXFLAGS+= -std=gnu++11
+QMAKE_CXXFLAGS += -std=gnu++14
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+STATECHARTS +=
+
+DISTFILES +=
