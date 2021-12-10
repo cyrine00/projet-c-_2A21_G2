@@ -43,6 +43,8 @@ private slots:
 
     void on_pb_ask_clicked();
 
+
+
 private:
     QMediaPlayer * erreur = new QMediaPlayer ;
     Ui::MainWindow *ui;
