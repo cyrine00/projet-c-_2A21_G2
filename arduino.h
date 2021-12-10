@@ -1,5 +1,7 @@
 #ifndef ARDUINO_H
 #define ARDUINO_H
+
+
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QDebug>
@@ -24,6 +26,9 @@ QString arduino_port_name;
 bool arduino_is_available;
 QByteArray data;  // contenant les données lues à partir d'Arduino
 };
+
+
+
 
 
 
