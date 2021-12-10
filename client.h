@@ -9,12 +9,11 @@ class Client
 {
 public:
     Client();
-    Client(int,int,int,int,int,QString,QString,QString);
+    Client(int,int,int,int,QString,QString,QString);
     int getCIN();
     int getage();
     int getmobile();
     int  getnb_visite();
-    int getcodep();
     QString getnom();
     QString getprenom();
     QString getville();
@@ -25,7 +24,6 @@ public:
     void setprenom(QString);
     void setville(QString);
     void setnb_visite(int);
-    void setcodep(int);
 
     bool ajouter();
     QSqlQueryModel * afficher();
@@ -39,7 +37,7 @@ public:
     QSqlQueryModel * client_mois();
 
 private:
-    int CIN,age,mobile,nb_visite,codep;
+    int CIN,age,mobile,nb_visite;
     QString nom,prenom,ville;
 
 };

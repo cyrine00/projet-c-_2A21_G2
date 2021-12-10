@@ -19,7 +19,6 @@
 //#include "QTextStream"
 #include<QPrintDialog>
 #include<QString>
-#include<arduino1.h>
 
 #include<QCameraImageCapture>
 #include<QCamera>
@@ -120,12 +119,6 @@
 #include "algorithm"
 #include "iostream"
 #include "string"
-#include<QtSvg/QSvgRenderer>
-#include<QDirModel>
-#include"qrcode.h"
-#include<fstream>
-using qrcodegen::QrCode;
-using qrcodegen::QrSegment;
 
 
 
@@ -238,7 +231,6 @@ ui->tab_commande->setModel(C.afficher());
 ui->le_CIN->setValidator(new QIntValidator(0,9999999,this));
 ui->le_mobile->setValidator(new QIntValidator(0,99999999,this));
 ui->le_age->setValidator(new QIntValidator(0,99,this));
-ui->codeP_2->setValidator(new QIntValidator(0,99999,this));
 ui->tab_client->setModel(cl.afficher());
 
 //****************************************************gestion parking*******************************************************************************
@@ -248,37 +240,13 @@ ui->tabpartenaire_2->setModel(tmparking.afficher());
 ui->tab_reservation->setModel(R.afficher());
 connect(ui->sendBtn_reservation, SIGNAL(clicked()),this, SLOT(sendMail()));
 connect(ui->browseBtn_reservation, SIGNAL(clicked()), this, SLOT(browse()));
- ui->code_res->setValidator(new QIntValidator(0,999999,this));
-ui->num_t_reservation->setValidator(new QIntValidator(0,99,this));
-ui->num_p_reservation->setValidator(new QIntValidator(0,99,this));
-//************arduino1***************************
-int ret1=Ar.connect_arduino();
-   switch(ret1)
-   {
-   case(0):qDebug()<< "arduino is available and connected to : " << Ar.getarduino_port_name();
-       break;
-   case(1):qDebug()<<"arduino is available but not connected to : " << Ar.getarduino_port_name();
-       break;
-   case(-1):qDebug()<<"arduino is not available : " << Ar.getarduino_port_name();
-   }
-   QObject::connect(Ar.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
-}
 
+}
 
 MainWindow::~MainWindow()
 {
     delete ui;
 
-}
-
-void MainWindow::update_label()
-{
-    data1=Ar.read_from_arduino();
- if (data1 == "20")
-ui->arduino_label->setText("Pluie Detectée ");
-
-else if (data1 == "21")
-ui->arduino_label->setText("Pas de Pluie");
 }
 void MainWindow::son()
 {
@@ -854,12 +822,11 @@ void MainWindow::on__ajouter_clicked()
     int age=ui->le_age->text().toInt();
     int mobile=ui->le_mobile->text().toInt();
     int nb_visite=ui->nb_visite->text().toInt();
-    int codep=ui->codeP_2->text().toInt();
     QString nom=ui->le_nom->text();
     QString prenom=ui->le_prenom->text();
     QString ville=ui->le_ville->text();
     cl.setCIN(ui->le_CIN->text().toInt());
-    Client cl (CIN , age , mobile,nb_visite,codep ,nom, prenom, ville);
+    Client cl (CIN , age , mobile,nb_visite ,nom, prenom, ville);
     bool test=cl.ajouter();
     if (test)
     {
@@ -895,11 +862,10 @@ void MainWindow::on_modifier_pb_clicked()
     int age=ui->le_age->text().toInt();
     int mobile=ui->le_mobile->text().toInt();
     int nb_visite=ui->nb_visite->text().toInt();
-    int codep=ui->codeP_2->text().toInt();
     QString nom=ui->le_nom->text();
     QString prenom=ui->le_prenom->text();
     QString ville=ui->le_ville->text();
-    Client cl (CIN , age , mobile,nb_visite,codep ,nom, prenom, ville);
+    Client cl (CIN , age , mobile,nb_visite ,nom, prenom, ville);
     bool test=cl.modifier ();
 
     if (test)
@@ -965,8 +931,6 @@ void MainWindow::on_tab_client_activated(const QModelIndex &index)
             ui->le_ville->setText((qry.value(4).toString()));
             ui->le_mobile->setText((qry.value(5).toString()));
             ui->nb_visite->setText((qry.value(6).toString()));
-            ui->codeP_2->setText((qry.value(7).toString()));
-
         }
     }
     else
@@ -987,8 +951,6 @@ void MainWindow::on_reset_clicked()
     ui->le_nom->clear();
     ui->le_prenom->clear();
     ui->le_ville->clear();
-    ui->codeP_2->clear();
-
 }
 
 void MainWindow::on_imprimer_clicked()
@@ -1389,7 +1351,8 @@ void MainWindow::on_tab_reservation_activated(const QModelIndex &index)
         while(qry.next())
         {
 
-           ui->code_res->setText(qry.value(0).toString());
+
+            ui->code_res->setText(qry.value(0).toString());
             ui->type_reservation->setText(qry.value(1).toString());
             ui->num_p_reservation->setText(qry.value(2).toString());
             ui->la_date_reservation->setDate(qry.value(3).toDate());
@@ -1507,55 +1470,10 @@ void MainWindow::on_stat_reservation_clicked()
 
     QChart *chart =new QChart();
     chart->addSeries(series);
-    chart->setTitle(" nombres des personnes qui ont reserve");
+    chart->setTitle("les types de reservations");
     chart->setAnimationOptions(QChart::AllAnimations);
     QChartView *chartview=new QChartView(chart);
 
     this->setCentralWidget(chartview);
 
 }
-void MainWindow::on_qr_clicked()
-{
-    if(ui->tab_reservation->currentIndex().row()==-1)
-                   QMessageBox::information(nullptr, QObject::tr("Suppression"),
-                                            QObject::tr("Veuillez Choisir un client du Tableau.\n"
-                                                        "Click Ok to exit."), QMessageBox::Ok);
-               else
-               {
-
-                    int id=ui->tab_reservation->model()->data(ui->tab_reservation->model()->index(ui->tab_reservation->currentIndex().row(),0)).toInt();
-                    const QrCode qr = QrCode::encodeText(std::to_string(id).c_str(), QrCode::Ecc::LOW);
-                    std::ofstream myfile;
-                    myfile.open ("qrcode.svg") ;
-                    myfile << qr.toSvgString(1);
-                    myfile.close();
-                   QSvgRenderer svgRenderer(QString ("qrcode.svg"));
-
-                    QPixmap pix( QSize(90, 90) );
-                    QPainter pixPainter( &pix );
-                    svgRenderer.render((&pixPainter));
-
-                    ui->QRCODE->setPixmap(pix);
-               }
-}
-
-
-//**********************************************logo*********************************************************
-void MainWindow::on_login_clicked()
-{
-    QString username = ui->username->text();
-    QString password = ui->password->text();
-    if(username == "admin" && password == "admin")
-    {
-        QMessageBox::information(this,"LOGIN", "Username and Password is correct");
-        ui->stackedWidget->setCurrentIndex(1);
-    }
-    else
-    {
-        QMessageBox::critical(this,"LOGIN", "Username and Password is incorrect");
-    }
-
-}
-
-
-

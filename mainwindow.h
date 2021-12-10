@@ -69,7 +69,6 @@ public:
 void son();
 
 private slots:
-void on_login_clicked();
     void on_ajouter_clicked();
     void on_supprimer_clicked();
     void on_button_modifier_clicked();
@@ -225,13 +224,8 @@ void on_login_clicked();
 
 
     void on_stat_reservation_clicked();
-    //**********Arduino1***************
-void update_label();
 
 
-
-
-void on_qr_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -267,10 +261,6 @@ QDateTime date;
 Reservation R;
 QStringList files2;
  Reservation tmpr;
-
-//*****************Arduino**********************************
- QByteArray data1;
-     Arduino Ar;
 };
 
 #endif // MAINWINDOW_H

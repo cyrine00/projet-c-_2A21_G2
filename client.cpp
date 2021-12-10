@@ -11,13 +11,12 @@ using namespace std;
 Client::Client()
 {
     CIN=0; age=0;
-    codep=0;
     nb_visite=0;
     mobile=0;
     nom=" "; prenom=" "; ville=" ";
 }
 
-Client::Client(int CIN,int age,int mobile ,int nb_visite,int codep,QString nom, QString prenom,QString ville)
+Client::Client(int CIN,int age,int mobile ,int nb_visite,QString nom, QString prenom,QString ville)
 {
     this->CIN=CIN;
     this->age=age;
@@ -26,14 +25,12 @@ Client::Client(int CIN,int age,int mobile ,int nb_visite,int codep,QString nom, 
     this->prenom=prenom;
     this->ville=ville;
     this->nb_visite=nb_visite;
-    this->codep=codep;
 }
 
 int Client::getCIN(){return CIN;}
 int Client::getage(){return age;}
 int Client::getmobile(){return mobile;}
 int Client::getnb_visite(){return nb_visite;}
-int Client::getcodep(){return codep;}
 QString Client::getnom(){return nom;}
 QString Client::getprenom(){return prenom;}
 QString Client::getville(){return ville;}
@@ -45,7 +42,6 @@ void Client::setnb_visite(int nb_visite){this->nb_visite=nb_visite;}
 void Client::setnom(QString nom){  this->nom=nom;}
 void Client::setprenom(QString prenom){this->prenom=prenom;}
 void Client::setville(QString ville){ this->ville=ville;}
-void Client::setcodep(int codep){ this->codep=codep;}
 
 bool Client::ajouter()
 {
@@ -53,10 +49,9 @@ bool Client::ajouter()
     QString age_string=QString::number(age);
     QString mobile_string=QString::number(mobile);
     QString nb_visite_string=QString::number(nb_visite);
-    QString codep_string=QString::number(codep);
     QSqlQuery query;
-    query.prepare("INSERT INTO CLIENT (CIN, nom, prenom,age,ville,mobile,nb_visite,code_p) "
-                  "VALUES (:CIN, :nom, :prenom, :age, :ville, :mobile, :nb_visite, :codep)");
+    query.prepare("INSERT INTO CLIENT (CIN, nom, prenom,age,ville,mobile,nb_visite) "
+                  "VALUES (:CIN, :nom, :prenom, :age, :ville, :mobile, :nb_visite)");
     query.bindValue(0, CIN_string);
     query.bindValue(1, nom);
     query.bindValue(2, prenom);
@@ -64,7 +59,6 @@ bool Client::ajouter()
     query.bindValue(4, ville);
     query.bindValue(5, mobile_string);
     query.bindValue(6, nb_visite_string);
-    query.bindValue(7, codep_string);
 
     return query.exec();
 }
@@ -83,7 +77,6 @@ QSqlQueryModel * Client::afficher()
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("ville"));
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("mobile"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("nb_visite"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("code_p"));
 
     return model;
 }
@@ -91,14 +84,13 @@ QSqlQueryModel * Client::afficher()
 bool Client::modifier()
 {
     QSqlQuery query;
-    query.prepare("update CLIENT SET NOM=?,PRENOM=?,AGE=?,VILLE=?,MOBILE=?, NB_VISITE=? , CODE_P=? where CIN=?");
+    query.prepare("update CLIENT SET NOM=?,PRENOM=?,AGE=?,VILLE=?,MOBILE=?, NB_VISITE=? where CIN=?");
     query.addBindValue(nom);
     query.addBindValue(prenom);
     query.addBindValue(age);
     query.addBindValue(ville);
     query.addBindValue(mobile);
     query.addBindValue(nb_visite);
-    query.addBindValue(codep);
     query.addBindValue(CIN);
     return query.exec();
 
@@ -118,7 +110,7 @@ QSqlQueryModel * Client::rechercher(QString c)
     QString age_string=QString::number(age);
     QString mobile_string=QString::number(mobile);
     QSqlQueryModel *model=new QSqlQueryModel();
-    model->setQuery("SELECT * FROM client  WHERE CIN LIKE '%"+c+"%' OR NOM LIKE '%"+c+"%' OR PRENOM LIKE '%"+c+"%' OR AGE LIKE '%"+c+"%' OR VILLE LIKE '%"+c+"%' OR MOBILE LIKE '%"+c+"%' OR NB_VISITE LIKE '%"+c+"%' OR CODE_P LIKE '%"+c+"%'");
+    model->setQuery("SELECT * FROM client  WHERE CIN LIKE '%"+c+"%' OR NOM LIKE '%"+c+"%' OR PRENOM LIKE '%"+c+"%' OR AGE LIKE '%"+c+"%' OR VILLE LIKE '%"+c+"%' OR MOBILE LIKE '%"+c+"%' OR NB_VISITE LIKE '%"+c+"%' OR MAIL LIKE '%"+c+"%'");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
@@ -126,7 +118,6 @@ QSqlQueryModel * Client::rechercher(QString c)
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("ville"));
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("mobile"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("nb_visite"));
-    model->setHeaderData(7, Qt::Horizontal, QObject::tr("code_p"));
 
     return model;
 }
@@ -143,7 +134,6 @@ QSqlQueryModel *Client::trie_clnom()
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("ville"));
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("mobile"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("nb_visite"));
-    model->setHeaderData(7, Qt::Horizontal, QObject::tr("code_p"));
 
 
     return model;
@@ -160,7 +150,6 @@ QSqlQueryModel *Client::trie_clage()
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("ville"));
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("mobile"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("nb_visite"));
-    model->setHeaderData(7, Qt::Horizontal, QObject::tr("code_p"));
 
     return model;
 }
@@ -176,7 +165,6 @@ QSqlQueryModel *Client::trie_clnbvis()
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("ville"));
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("mobile"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("nb_visite"));
-    model->setHeaderData(7, Qt::Horizontal, QObject::tr("code_p"));
 
     return model;
 }
@@ -193,7 +181,6 @@ QSqlQueryModel * Client::client_mois()
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("ville"));
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("mobile"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("nb_visite"));
-    model->setHeaderData(7, Qt::Horizontal, QObject::tr("code_p"));
 
     return model;
 }

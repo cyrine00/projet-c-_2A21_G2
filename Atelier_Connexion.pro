@@ -7,16 +7,11 @@
 QT      += core gui sql
 QT += widgets
 QT += printsupport
-QT += sql network printsupport
 QT += gui
 QT      += core gui multimedia
 QT += serialport
 QT      += core gui multimedia multimediawidgets charts
-QT       += core gui charts
-
 QT += serialport
-QT+= svg
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Atelier_Connexion
@@ -37,7 +32,6 @@ CONFIG += c++11
 
 SOURCES += \
     arduino.cpp \
-    arduino1.cpp \
     avis.cpp \
     client.cpp \
     commande.cpp \
@@ -49,16 +43,11 @@ SOURCES += \
     connection.cpp \
     parking.cpp \
     qcustomplot.cpp \
-    qrcode.cpp \
-    qrcodegeneratordemo.cpp \
-    qrcodegeneratorworker.cpp \
-    qrwidget.cpp \
     reservation.cpp \
     smtp.cpp
 
 HEADERS += \
     arduino.h \
-    arduino1.h \
     avis.h \
     client.h \
     commande.h \
@@ -69,8 +58,6 @@ HEADERS += \
     connection.h \
     parking.h \
     qcustomplot.h \
-    qrcode.h \
-    qrwidget.h \
     reservation.h \
     smtp.h
 

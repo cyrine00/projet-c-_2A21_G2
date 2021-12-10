@@ -113,10 +113,10 @@ QSqlQueryModel * Reservation::afficher_tri_type()
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("TYPE_R"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("NB_PER"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("DATES"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("NB_TABLE"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("EMAIL"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("HEURE_A"));
-    model->setHeaderData(7, Qt::Horizontal, QObject::tr("HEURE_D"));
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("NB_TABLE"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("HEURE_A"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("HEURE_D"));
 
 
 
@@ -132,10 +132,10 @@ QSqlQueryModel * Reservation::afficher_tri_heure()
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("TYPE_R"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("NB_PER"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("DATES"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("NB_TABLE"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("EMAIL"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("HEURE_A"));
-    model->setHeaderData(7, Qt::Horizontal, QObject::tr("HEURE_D"));
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("NB_TABLE"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("HEURE_A"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("HEURE_D"));
 
 
 
